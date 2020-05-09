@@ -1,7 +1,7 @@
 #!/bin/bash
 ################# funciones para agregar los comandos a los scripts expect de cada marca/tipo de equipo #########
-EXP="/home/local/GLOBANT/christopher.casper/DEVICE-MULTI-CONFIG/exp/"
-VAR="/home/local/GLOBANT/christopher.casper/DEVICE-MULTI-CONFIG/var/"
+EXP="/home/local/********/christopher.casper/DEVICE-MULTI-CONFIG/exp/"
+VAR="/home/local/********/christopher.casper/DEVICE-MULTI-CONFIG/var/"
 function ADD_COMMAND_FORTIGATE(){
 echo
 echo
@@ -74,7 +74,7 @@ do
 	echo $input >> $VAR"device-list.txt"
         if [[ $input == "" ]];then
 	#CHECK_YORN
-        for device in `cat /home/local/GLOBANT/christopher.casper/DEVICE-MULTI-CONFIG/var/device-list.txt` $(seq $done); do
+        for device in `cat /home/local/********/christopher.casper/DEVICE-MULTI-CONFIG/var/device-list.txt` $(seq $done); do
         ./exp/configure-Fortigate-Temp.exp $device $s $e $user; #llama a expect fortigate
 done                
         fi
@@ -93,7 +93,7 @@ do
         if [[ $input == "" ]];then
 	ADD_COMMAND_CISCO
 	CHECK_YORN
-        for device in `cat /home/local/GLOBANT/christopher.casper/DEVICE-MULTI-CONFIG/var/device-list.txt`; do
+        for device in `cat /home/local/*******/christopher.casper/DEVICE-MULTI-CONFIG/var/device-list.txt`; do
         ./exp/configure-cisco-Temp.exp $device $s $e $user; #llama a expect cisco
 done                
         fi
@@ -112,7 +112,7 @@ do
         if [[ $input == "" ]];then
 	ADD_COMMAND_JUNIPER
 	CHECK_YORN
-        for device in `cat /home/local/GLOBANT/christopher.casper/DEVICE-MULTI-CONFIG/var/device-list.txt`; do
+        for device in `cat /home/local/*********/christopher.casper/DEVICE-MULTI-CONFIG/var/device-list.txt`; do
         ./exp/configure-Juniper-Temp.exp $device $s $user; #llama a expect juniper
 done
         fi
