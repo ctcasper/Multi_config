@@ -1,0 +1,41 @@
+#!/usr/bin/expect
+ set timeout 25
+# VARIABLES
+ set hostname [lindex $argv 0]
+ set username [lindex $argv 2]
+ set password [lindex $argv 1]
+ 
+# RESULTADOS LOGS
+ log_file -a /home/local/GLOBANT/christopher.casper/DEVICE-MULTI-CONFIG/log/log.txt
+ 
+# EN QUE DEVICE ESTA TRABJANDO
+ send_user "\n"
+ send_user "\n"
+ send_user "\n"
+ send_user ">>>>>  Working on $hostname | You can cancel this device pressing ctrl+c @ [exec date] <<<<<\n"
+ send_user "\n"
+ send_user "\n"
+ send_user "\n"
+ send_user "\n"
+ 
+# PARA NO CHEQUEAR KEYS
+ spawn -noecho ssh -o StrictHostKeyChecking=no $username\@$hostname
+ 
+# ERRORES EN LA CONEXION SSH
+ expect {
+ timeout { send_user "\nTimeout Exceeded - Check Host\n"; exit 1 }
+ eof { send_user "\nSSH Connection To $hostname Failed\n"; exit 1 }
+ "*#" {}
+ "*assword: " {
+ send "$password\n"
+ }
+ }
+ 
+# COMANDOS PARA FIREWALL
+expect "# "
+ \n"
+expect "# "
+sleep 2
+send "quit \n"
+expect eof
+
